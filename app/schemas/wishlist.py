@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
+from typing import List
 
 class WishlistCreate(BaseModel):
     title: str
@@ -23,3 +24,11 @@ class WishlistItemResponse(BaseModel):
     place_id: int
     note: Optional[str]
     added_date: datetime
+
+class WishlistDetailResponse(BaseModel):
+    model_config = {"from_attributes": True}
+    wishlist_id: int
+    title: str
+    is_public: bool
+    user_id: int
+    items: List[WishlistItemResponse] = []
